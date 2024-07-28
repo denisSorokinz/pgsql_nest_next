@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  back-end:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    volumes:
+      - ./server/src:/app/src
