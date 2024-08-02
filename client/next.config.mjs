@@ -7,6 +7,9 @@ const nextConfig = {
       },
       { hostname: 'loremflickr.com' },
       { hostname: 'picsum.photos' },
+      {
+        hostname: 'back-end-black-river-6039.fly.dev',
+      },
     ],
   },
   output: 'standalone',

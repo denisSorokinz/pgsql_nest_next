@@ -1,19 +1,22 @@
-import { paginateUsers } from '@/actions/';
+import { paginateUsers, type PaginateUsersSuccess as PageData } from '@/actions/';
 import UserList from '@/components/lists/UserList';
 
 export default async function UsersPage() {
-  const initialUsers = await paginateUsers();
+  const initialUserResponse = await paginateUsers();
+  const { success, message, ...body } = initialUserResponse;
 
-  if (!initialUsers.success)
+  if (!initialUserResponse.success)
     return (
       <section>
         <h1>No users found</h1>
       </section>
     );
 
+  console.log({ body });
+
   return (
     <section>
-      <UserList initialUsers={initialUsers} />
+      <UserList initialPage={body as PageData} />
     </section>
   );
 }
