@@ -15,6 +15,7 @@ type Props = {
 const UserList: FC<Props> = ({ initialPage }) => {
   const [page, setPage] = useState(1);
 
+  
   // const [users, setUsers] = useState<User[]>([]);
 
   const {
